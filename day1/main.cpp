@@ -18,7 +18,7 @@ int main(int argv, char** argc) {
     }
 
     int sum = 0;
-    unordered_set<int> sums;
+    unordered_set<int> sums; //unordered_set has O(1) lookup
     sums.insert(0);
     bool found = false;
     while (getline (file, line) && (line.length() > 0) && (found == false)) {
