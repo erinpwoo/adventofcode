@@ -3,7 +3,7 @@
 #include <string>
 #include <fstream>
 #include <cstring>
-#include <set>
+#include <unordered_set>
 
 using namespace std;
 
@@ -18,9 +18,8 @@ int main(int argv, char** argc) {
     }
 
     int sum = 0;
-    set<int> sums;
-    sums.insert(sum);
-    pair< set<int>::iterator,bool> ptr;
+    unordered_set<int> sums;
+    sums.insert(0);
     bool found = false;
     while (getline (file, line) && (line.length() > 0) && (found == false)) {
         char l = line[0];
@@ -37,14 +36,14 @@ int main(int argv, char** argc) {
             sum -= num;
         }
 
-        ptr = sums.insert(sum);
-
-        if (!ptr.second) {
+        if (sums.find(sum) == sums.end()) {
+            sums.insert(sum);
+        }
+        else {
             found = true;
-            break;
         }
     }
-    cout << sum << endl;
     file.close();
+    cout << sum << endl;
     return 0;
 }
