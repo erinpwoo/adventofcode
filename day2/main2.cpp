@@ -55,6 +55,36 @@ bool diffCharsIsOne(string str1, string str2) {
     
 }
 
+string remainingStr(string str1, string str2) {
+    string result;
+    for (int i = 0; i < str1.length(); i++) {
+        if (str1[i] != str2[i]) {
+            result = str1.erase(i, 1);
+            if (result == str2.erase(i, 1)) {
+                cout << "Matches." << endl;
+            }
+            return result;
+        }
+    }
+    return result;
+}
+
+string finalResult(vector <string> vect) {
+
+    string result;
+
+    for (int i = 0; i < vect.size(); i++) {
+        for (int j = i; j < vect.size(); j++) {
+            if (diffCharsIsOne(vect[i], vect[j]) == true) {
+                result = remainingStr(vect[i], vect[j]);
+                return result;
+            }
+        }
+    }
+    return result;
+    
+}
+
 int main(int argv, char** argc) {
     ifstream file (argc[1]);
     string line;
@@ -68,14 +98,7 @@ int main(int argv, char** argc) {
         vect.push_back(line);
     }
 
-    string result;
-    
-    string t1 = "asdfghjkl"; //testing diffCharsIsOne function
-    string t2 = "asdfghjkl";
-
-    cout << diffCharsIsOne(t1, t2) << endl;
-
-    //cout << result << endl;
+    cout << finalResult(vect) << endl;
 
     file.close();
     return 0;
