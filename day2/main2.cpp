@@ -11,6 +11,7 @@
 using namespace std;
 
 bool diffCharsIsOne(string str1, string str2) {
+    /*
     map <char, int> map1;
     map <char, int> map2;
 
@@ -30,7 +31,7 @@ bool diffCharsIsOne(string str1, string str2) {
             map2.insert(pair<char, int>(c, 1));
         }
     }
-
+    
     map<char, int>::iterator itr1;
     map<char, int>::iterator itr2 = map2.begin();
 
@@ -47,11 +48,41 @@ bool diffCharsIsOne(string str1, string str2) {
         }
     }
     
+
     if (diff == 0) {
+        cout << "return false" << endl;
         return false;
     } else {
-        return true;
+        int temp = 0;
+        for (int i = 0; i < str1.length(); i++) {
+            if (str1[i] != str2[i]) {
+                temp++;
+            }
+        }
+        if (temp > 1) {
+            return false;
+        }
     }
+    return true;
+
+    */
+   if (str1 == str2) {
+       return false;
+   }
+   int diff = 0; 
+
+    for (int i = 0; i < str1.length(); i++) {
+        if (diff > 1) {
+            //cout << "false" << endl;
+            return false;
+        }
+        if (str1[i] != str2[i]) {
+            diff++;
+        }
+    }
+
+    cout << str1 << " " << str2 << endl;
+    return true;
     
 }
 
@@ -59,11 +90,13 @@ string remainingStr(string str1, string str2) {
     string result;
     for (int i = 0; i < str1.length(); i++) {
         if (str1[i] != str2[i]) {
-            result = str1.erase(i, 1);
-            if (result == str2.erase(i, 1)) {
-                cout << "Matches." << endl;
+            //cout << str1 << " " << str2 << endl;
+            string temp = str1;
+            string temp2 = str2;
+            result = temp.erase(i, 1);
+            if (result == temp2.erase(i, 1)) {
+                return result;
             }
-            return result;
         }
     }
     return result;
@@ -75,7 +108,8 @@ string finalResult(vector <string> vect) {
 
     for (int i = 0; i < vect.size(); i++) {
         for (int j = i; j < vect.size(); j++) {
-            if (diffCharsIsOne(vect[i], vect[j]) == true) {
+            if ((diffCharsIsOne(vect[i], vect[j]) == true) && (i != j)) {
+                cout << i << " " << vect[i] << " " << j << " "<< vect[j] << endl;
                 result = remainingStr(vect[i], vect[j]);
                 return result;
             }
@@ -97,6 +131,8 @@ int main(int argv, char** argc) {
     while (getline(file, line) && line.length() > 0) {
         vect.push_back(line);
     }
+
+    //cout << diffCharsIsOne("asdfghjkl", "asdfghjkl") << endl;
 
     cout << finalResult(vect) << endl;
 
