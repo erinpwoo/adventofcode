@@ -46,9 +46,12 @@ bool diffCharsIsOne(string str1, string str2) {
             }
         }
     }
-    return true;
-
     
+    if (diff == 0) {
+        return false;
+    } else {
+        return true;
+    }
     
 }
 
@@ -67,10 +70,12 @@ int main(int argv, char** argc) {
 
     string result;
     
+    string t1 = "asdfghjkl"; //testing diffCharsIsOne function
+    string t2 = "asdfghjkl";
 
+    cout << diffCharsIsOne(t1, t2) << endl;
 
-
-    cout << result << endl;
+    //cout << result << endl;
 
     file.close();
     return 0;
