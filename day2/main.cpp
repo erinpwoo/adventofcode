@@ -1,3 +1,4 @@
+//PART 1 OF DAY 2
 //Compiling w/ C++11: g++ -std=c++11 main.cpp -o main
 
 #include <cstdlib>
